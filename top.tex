@@ -1,0 +1,112 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb,amscd, verbatim, graphicx,stackrel,framed}
+\usepackage{arydshln,leftidx,mathdots,tikz,multicol,vwcol,framed}
+%\usepackage[notcite, notref]{showkeys}
+\usepackage{amsmath,amssymb,amsfonts, tikz-cd,underscore}
+%\usepackage[active, generate=exercises, extract-env={exercise,iexercise}, extract-cmd={section,newpage}]{extract}
+%\usepackage{glossaries}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb,amsfonts, tikz}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{times}
+\usepackage{authblk}
+\usepackage{url}
+
+%\renewcommand{\baselinestretch} {1.5}
+% ----------------------------------------------------------------
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+
+% Hilary's addition to make a compact article and use latex section commands
+% make list and enumerate more compact
+\usepackage{tweaklist}
+\renewcommand{\itemhook}
+{
+    \setlength{\topsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\partopsep}{0pt}
+    \setlength{\itemsep}{0pt}
+    \setlength{\labelwidth}{10pt}
+    \setlength{\leftmargin}{\labelwidth}
+}
+
+\renewcommand{\enumhook}
+{
+    \setlength{\topsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\partopsep}{0pt}
+    \setlength{\itemsep}{3pt}
+    \setlength{\labelwidth}{10pt}
+    \setlength{\leftmargin}{\labelwidth}
+}
+
+\renewcommand{\deschook}
+{
+    \setlength{\topsep}{3pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+    \setlength{\partopsep}{0pt}
+    \setlength{\itemsep}{0pt}
+    \setlength{\labelwidth}{0pt}
+    \setlength{\leftmargin}{\labelwidth}
+}
+
+% Compact sections
+\makeatletter
+\renewcommand\section
+{%
+    \@startsection {section}{1}{\z@}{-1ex \@plus -0.5ex \@minus -.1ex}%
+   {0.5ex \@plus.1ex}{\normalfont\bfseries}%
+}
+\renewcommand\subsection%
+{%
+    \@startsection {subsection}{1}{\z@}{-1ex \@plus -0.5ex \@minus-.1ex}%
+   {0.5ex \@plus .1ex}{\bfseries\raggedright}%
+}
+\renewcommand\subsubsection%
+{%
+    \@startsection {subsubsection}{1}{\z@}{-0.5ex \@plus -1ex \@minus -.2ex}%
+   {0.1ex \@plus .1ex}{\bfseries\raggedright}%
+}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {0.5ex \@plus0.5ex \@minus.1ex}%
+                                    {-0.5em}%
+                                    {\normalfont\normalsize\bfseries}}
+
+
+\def\@maketitle
+{%
+  \begin{center}%
+  \let \footnote \thanks
+    {\large\bf \@title \par}%
+    \vskip 0.5em%
+    {\normalfont
+      \lineskip 1em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 0.5em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  %\vskip 1.5em
+}
+% Reduce the spacing around equations
+\AtBeginDocument{%
+ \abovedisplayskip=6pt plus 6pt minus 4pt
+ \belowdisplayskip=6pt plus 6pt minus 3pt
+ \abovedisplayshortskip=0pt plus 3pt
+ \belowdisplayshortskip=7pt plus 3pt minus 4pt
+}
+\makeatother
+
+% Bibliography stuff
+\usepackage[sort&compress,round]{natbib}
+
+\setlength{\bibsep}{0pt}
+%\setlength{\bibhang}{-300pt}
+

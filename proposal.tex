@@ -1,0 +1,73 @@
+\input{top}
+
+\begin{document}
+
+\title{Advection and Convection for Weather and Climate Models}
+
+\author[1]{James Woodfield}
+\affil[1]{MPECDT, Reading {\small\protect\url{<j.woodfield@student.reading.ac.uk>}}}
+
+\author[2]{Hilary Weller}
+\affil[2]{Meteorology, University of Reading, {\small\protect\url{<h.weller@reading.ac.uk>}}}
+
+\author[3]{Colin Cotter}
+\affil[3]{Imperial College, {\small\protect\url{<colin.cotter@imperial.ac.uk>}}}
+
+\maketitle
+
+\section{Background and Motivation}
+
+Transport, or advection, is arguably the most important part of an atmospheric prediction model. Everything in the atmosphere is transported by the wind -- temperature, pollutants, moisture, clouds and even the wind itself (non-linear advection). Accurate and efficient numerical methods for transport are essential for good weather forecasts and climate predictions.
+
+A numerical method to solve the linear advection equation should have a number of desirable properties: 
+\begin{itemize}
+\item Accurate;
+\item Efficient;
+\item Locally conservative;
+\item Monotonic -- for a divergence free velocity field, no new extrema should be created (especially spurious negative values);
+\item Correlation preserving -- two quantities that are initially correlated should remain correlated; 
+\end{itemize}
+Despite a huge literature on advection schemes, none has all of the above properties. We will describe some deficiencies in various classes of advection schemes:
+\begin{itemize}
+    \item Explicit Eulerian advection schemes have stability constraints making them unsuitable for long time steps. 
+    \item Implicit Eulerian advection schemes do not have stability constraints based on the Courant number. However, they require the solution of a global matrix equation, which is expensive. They can also have poor accuracy for large Courant numbers \cite[eg][]{CWPS17}. 
+    \item Semi-Lagrangian advection schemes permit long time steps but are generally non-conservative and have unpredictable computer memory access patterns which makes them less efficient on modern massively parallel computers.  
+    \item Monotonic limiters, used to prevent spurious extrema when handling discontinuous data, can reduce the formal order-of-accuracy of a scheme as well as affect non-linear correlations between tracers. 
+\end{itemize}
+
+Operational weather and climate centres, such as the Met Office and ECMWF, are developing new atmospheric dynamical cores to run on modern computer architectures and they need accurate, efficient and conservative advection schemes that are stable for long time steps.
+
+Advection is also a physical process involved in buoyant atmospheric convection. The representation of sub-grid scale convection is  arguably the weakest aspect of models of the atmosphere \cite[]{ipcc41,LCD+08,SLF+10,HPB+14} preventing longer lead time weather forecasts and regional predictions of the precipitation associated with climate change. The underlying structure of convection parameterisations has not changed for decades \cite[]{HPB+14} despite numerous attempts. Traditional convection parameterisation schemes assume that the temperature and moisture of the atmosphere adjust within one time step due to the vertical transport associated with convective plumes so that columns of atmosphere that were convectively unstable become stable \cite[]{GR90}. Heat, moisture and sometimes momentum are transported in the vertical but not mass and there is no memory of the convection from one time step to the next. These assumptions have hampered numerical simulations of the atmosphere \cite[]{SLF+10}.
+
+\cite{TWV+18} proposed a new framework for convection parameterisation, using multi-fluids, in order to unify convection and boundary layer turbulence parameterization and account consistently for net mass transport due to convection and convective memory. Separate momentum, moisture, temperature and continuity equations are formulated for multiple co-existing fluids. For example one fluid could be for the stable, environmental air, another for convective updrafts and a third for downdrafts. \cite{WM19} describe a first numerical method for solving the multi-fluid equations with limits on the time-step based on maximum updraft speeds but not based on the acoustic wave speed. However there are questions about the stability of the the continuous PDEs.
+
+\section{Project Plan}
+
+\subsection{Long Time-step Advection}
+
+There are three possible contenders for achieving long time steps using conservative finite volume numerics on unstructured grids:
+\begin{enumerate}
+\item Implicit time-stepping;
+\item Local sub-cycling where Courant numbers are high;
+\item Flux-form semi-Lagrangian with a large stencil for calculating a swept volume of fluid.
+\end{enumerate}
+In this project, we will investigate implicit time-stepping, in collaboration with ECMWF who are investigating local sub-cycling. Implicit advection is assumed expensive due to the global matrix inversion and it loses accuracy for large Courant numbers. We will revisit these assumptions. The efficiency of global matrix inversions can be improved with good preconditioners and efficient parallelisation and only a very few solver iterations are needed when Courant numbers are modest. Typically large Courant numbers are only present in a small fraction of the atmosphere so the local drop in accuracy may not be critical. We will test implicit advection using existing implementations in OpenFOAM. The computational cost and accuracy will be compared with an explicit scheme using a small time step.
+
+For non-linear advection, we will develop and test a quasi-Newton solver; an approach which is common in other disciplines \cite[eg][]{ECM04} but has received less attention in atmospheric modelling.
+
+
+\subsection{Multi-fluid Modelling of Convection}
+
+Multi-fluid modelling of convection is in its infancy so there are many problems still to solve. We will analyse the stability of the continuous and discretised multi-fluid Boussinesq equations using methods following \cite{MWH1x} and investigate the impact of a separate pressure equation for each fluid on stability. 
+
+Once buoyant fluid is created near the ground, it will rise and accelerate due to the latent heat of condensation. This can give buoyant plumes large vertical velocities and air will rise by far more than one model level in one time step. Solving the equations of motion for convection rather than a traditional parameterization means that we need an advection scheme for vertical transport due to convection that is conservative and stable in the presence of large time steps. We will implement an implicit time step advection schemes into the existing multi-fluid model written using the OpenFOAM library by Weller. The new schemes will be used to advect temperature, momentum and moisture in the vertical. Two test cases of the multi-fluids model will be used:
+\begin{enumerate}
+\item Under resolving  warm, moist rising bubble
+\item Under resolving Rayleigh-Benard convection.
+\end{enumerate}
+Vertical heat transport is not simulated accurately in a single fluid model when these test cases are under resolved but improvements can be made using a multi-fluid model. The timestep used for these test cases is limited by the vertical updraft speed when using advection schemes that are limited by the Courant number. With the new advection scheme we will increase the time step and compare solutions and cost with the short time step model and with a well resolved single fluid model. 
+
+\bibliography{Weller}
+\bibliographystyle{abbrvnat}
+
+\end{document}

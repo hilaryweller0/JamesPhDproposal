@@ -1,0 +1,234 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,reqno]{elsarticle}
+
+%remove preprint submitted stuff
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \def\@oddfoot{}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
+
+
+\setlength{\textwidth}{6.3in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textheight}{8.7in}
+\setlength{\topmargin}{0pt}
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{5pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage[table]{xcolor}
+\usepackage{float}
+
+\usepackage{amssymb,amsmath,epsfig,graphics,psfrag,graphicx,color,fancyhdr,subfigure}
+\definecolor{lightblue}{rgb}{0.32,0.45,0.90}
+\definecolor{lightgreen}{rgb}{0.42,0.7,0.40}
+\usepackage{stmaryrd}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+}
+
+%\usepackage{refcheck}
+\usepackage{soul}
+
+
+% OUR DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Curl}{\mathrm{curl}}
+\newcommand{\spp}{\mathrm{supp}}
+\newcommand{\curl}{\mathbf{curl}}
+\newcommand{\ccurl}{\underline{\mathbf{curl}}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\II}{\boldsymbol{\I}}
+\newcommand{\fracd}[2]{\displaystyle {\frac{{\displaystyle{#1}}}{{\displaystyle{#2}}}}}
+\renewcommand{\div}{\operatorname*{div}}
+\newcommand{\norm}[1]{\ensuremath{\left\|#1\right\|}}
+\newcommand\Grad{\nabla}
+\newcommand\bdiv{\mathbf{div}\,}
+\newcommand\vdiv{\mathrm{div}\,}
+\def\b{\boldsymbol}
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{4}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother\def\b{\boldsymbol}
+
+
+\newcommand\cero{\ensuremath{\boldsymbol{0}}}
+\newcommand\Om{\Omega}
+\newcommand\ff{\boldsymbol{f}}
+\newcommand\brho{\boldsymbol{\rho}}
+\newcommand\bk{\boldsymbol{k}}
+\newcommand\bnu{\boldsymbol{\nu}}
+\newcommand\bsigma{{\boldsymbol{\sigma}}}
+\newcommand\bsigmad{\bsigma^{\mathrm{d}}}
+\newcommand\btau{\boldsymbol{\tau}}
+\newcommand\btaud{\btau^{\mathrm{d}}}
+\newcommand\bI{\mathbb{I}}
+\newcommand\bH{\mathbf{H}}
+\newcommand\rH{\mathrm{H}}
+\newcommand\rQ{\mathrm{Q}}
+\newcommand\rZ{\mathrm{Z}}
+\newcommand\bL{\mathbf{L}}
+\newcommand\bV{\mathbf{V}}
+\newcommand\rL{\mathrm{L}}
+\newcommand\bzeta{\boldsymbol{\zeta}}
+\newcommand\GD{{\Gamma_\mathrm{D}}}
+\newcommand\GN{{\Gamma_\mathrm{N}}}
+\newcommand\bs{\boldsymbol{s}}
+\newcommand\bchi{\boldsymbol{\chi}}
+
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\E}{\mathcal{E}_{h}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand\bu{{\boldsymbol{u}}}
+\newcommand\bv{{\boldsymbol{v}}}
+\newcommand\bw{{\boldsymbol{w}}}
+\newcommand\bx{\boldsymbol{x}}
+\newcommand\btheta{\boldsymbol{\theta}}
+\newcommand\bEta{\boldsymbol{\eta}}
+\newcommand\bvarphi{\boldsymbol{\varphi}}
+\newcommand\beps{\boldsymbol{\varepsilon}}
+\newcommand\bphi{\boldsymbol{\phi}}
+\newcommand{\qan}{{\quad\hbox{and}\quad}}
+\newcommand{\qin}{{\quad\hbox{in}\quad}}
+\newcommand{\qon}{{\quad\hbox{on}\quad}}
+\newcommand\disp{\displaystyle}
+\newcommand\D{{\mathrm D}}
+\newcommand\RR{\mathbb{R}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+
+\colorlet{cgray}{gray!20!white}
+\newcommand{\cred}[1]{\textcolor{red}{#1}}
+\newcommand{\cblue}[1]{\textcolor{lightblue}{#1}}
+\newcommand{\corange}[1]{\textcolor{orange}{#1}}
+
+\graphicspath{{PathForImagesReport/}}
+\newcommand\Diff{\text{Diff}}
+\newcommand\Vect{\text{Vect}}
+\newcommand\lig{\mathfrak{g}}
+\newcommand\lin{\mathfrak{n}}
+ 
+
+\usepackage{showlabels}
+% END OF OUR DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lipsum}
+
+\newenvironment{proof}{\noindent{Proof.}}{\hfill$\square$}
+
+% END OF OUR DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\allowdisplaybreaks
+
+%***********************************************************************************
+\begin{document}
+
+\title{\textbf{Proposal}}
+\date{\today}
+
+\author[cdt]{James Woodfield}
+\ead{j.woodfield@student.reading.ac.uk}
+\author[MET]{Hillary Weller}
+\ead{h.weller@reading.ac.uk}
+\author[Lon]{Colin Cotter}
+\ead{colin.cotter@imperial.ac.uk}
+\address[cdt]{ EPSRC Centre for Doctoral Training in Mathematics of Planet Earth. 
+University of Reading, UK; and Imperial College London, UK.}
+\address[MET]{University of Reading, Reading, United Kingdom}
+\address[Lon]{Imperial College London, United Kingdom}
+
+%***********************************************************************************
+
+\begin{frontmatter}
+
+\begin{abstract}
+\cred{This project has two main goals, numerical methods for advection and representing under resolved Rayleigh-Bernard convection. More specifically, we will consider advection on unstructured grids withsom  }
+\end{abstract}
+\end{frontmatter}
+\section{guidelines}
+Be less than 2 pages of single spaced A4 text (12 point font)
+• Be a pdf file
+• List the student name and affiliation and the names and affiliations of all supervisors
+• Include graphics and/or equations (optionally)
+• Start with motivation from atmosphere, ocean, weather or climate science.
+• Include a description the project.
+• Include a description of some of the mathematics that will be used/developed. This should be directly linked to the motivation above.
+• Include a work plan for the PhD project.
+• Describe how you will take steps to ensure that the work has impact in atmosphere and ocean science.
+• Include citations
+\section{Motivation}
+Transport, or advection, is arguably the most important part of an atmospheric prediction model.
+Everything in the atmosphere is transported by the wind – temperature, pollutants, moisture, clouds
+and even the wind itself (non-linear advection). \cred{Resolving these processes numerically remains an important aspect of weather prediction.} \cred{Currently} The World’s best weather forecasting centres, the UK Met Office and ECMWF, currently use semi-Lagrangian advection which is inadequate for future
+models of the atmosphere because: transported fields are not conserved; semi-Lagrangian is unsuitable for the less structured \cred{grids to be implemented in the future}, as well as the memory access patterns of semi-Lagrangian make it unsuitable for modern computers. \cred{As a result}, 
+the Met Office and ECMWF, are developing new atmospheric dynamical cores to run on modern computer architectures which will use finite-volume transport methods, and will have unstructured. \cred{In this project we investigate numerical methods that allow unstructured grids,}
+\section{Mathematics}
+The flux form of advection looks like:
+\begin{align*}
+\frac{\partial \psi}{\partial t} + \nabla \cdot (\b u \psi) =  0
+\end{align*}
+\cred{ The continuity equation, conservative transport equation, non-linear advection equation can all be put into this form for an appropriate choice of $\psi = \rho,\phi, \rho \b u$. So we look at different numerical methodology used to model this equation, with the aim to preserve desirable properties, and be able to take long time steps.}
+\section{3}
+Accurate, conservative and efficient long time-step schemes do not exist for arbitrary (or unstructured)
+grids such as the ECMWF reduced latitude-longitude, quasi-uniform grid. In this work package we
+will work with ECMWF to explore a number of ways to achieve this. We will develop the same test
+cases as ECMWF, using re-analysis winds. ECMWF are combining a short time step horizontal
+advection scheme with a long time step vertical advection scheme using the finite volume dynamical
+core of IFS. We will complement this, developing alternatives using OpenFOAM and the ECMWF
+Atlas framework:
+1. 
+Implicit advection is assumed expensive due to the global matrix inversion and loses accuracy for
+large Courant numbers. We will revisit these assumptions. The efficiency of global matrix inversions
+can be improved with good preconditioners and efficient parallelisation and only a very few solver
+iterations are needed when Courant numbers are modest. Typically large Courant numbers are
+only present in a small fraction of the atmosphere so the local drop in accuracy may not be critical.
+We will test implicit advection using existing implementations in OpenFOAM. We will use the re-
+analysis winds test case from WP 2 so that Courant numbers are only large in a few places. The
+computational cost and accuracy will be compared with an explicit scheme using a small time step.
+2.
+Since Courant numbers are only large in a small fraction of the atmosphere, an obvious solution is
+to use sub-stepping in a limited region around the large Courant numbers (i.e. taking multiple small
+time-steps for every one global time step). However this solution will lead to parallel load balancing
+problems because processors computing the regions with sub time stepping will take longer than
+other processors and so other processors will have to wait. This then becomes a load balancing
+problem. We will explore dynamic load balancing combined with sub time stepping to solve this
+problem.
+3.
+FFSL is possible on arbitrary grids
+[62]
+but it appears that cost will scale with Courant number for
+Courant numbers larger than one whereas on structured grids the cost rises only very little for
+large Courant numbers
+[19]
+. We will revisit these assumptions and see if shortcuts can be found on
+arbitrary grids to improve scaling with Courant number.
+\section{5}
+
+5. Multi-Fluids Model of Convection
+We will implement two candidate long time step advection schemes into the existing multi-fluid model written using the OpenFOAM library by Weller. The choice of scheme will be influenced by the work in previous work packages. The new schemes will be used to advect temperature, momentum and moisture in the vertical. Two test cases of the multi-fluids model will be used:
+1. Under resolving warm, moist rising bubble
+2. Under resolving Rayleigh-Benard convection.
+Vertical heat transport is not simulated accurately in a single fluid model when these test cases are under resolved but improvements can be made using a multi-fluid model. The timestep used for these test cases is limited by the vertical updraft speed when using advection schemes that are limited by the Courant number. With the new advection scheme we will increase the time step and compare solutions and cost with the short time step model and with a well resolved single fluid model.
+\begin{thebibliography}{99}
+\bibitem{HT-2018} {D. D. Holm, T. Tyranowski},
+{New variational and multisymplectic formulations of the Euler--Poincare equation on the Virasoro--Bott group using the inverse map}. arXiv:1801.07139 Proceedings of the Royal Society of London A: Mathematical, Physical and Engineering Sciences, 474(2213), 2018
+
+\end{thebibliography}
+\end{document}
+
+
+
+
